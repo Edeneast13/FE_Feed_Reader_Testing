@@ -29,16 +29,16 @@ $(function() {
         //test that checks to make sure the urls in allFeeds are defined and are not empty 
         it('urls are defined and not empty', function(){
             for(var i = 0; i < allFeeds.length; i++){
-                expect(allFeeds[i]['url']).toBeDefined();
-                expect(allFeeds[i]['url']).not.toBe('');
+                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].url).not.toBe('');
             }
          });
 
         //test that checks to make sure the names in allFeeds are defined and are not empty 
         it('names are defined and not empty', function(){
             for(var i = 0; i < allFeeds.length; i++){
-                expect(allFeeds[i]['name']).toBeDefined();
-                expect(allFeeds[i]['name']).not.toBe('');
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name).not.toBe('');
             }
          });
     });
