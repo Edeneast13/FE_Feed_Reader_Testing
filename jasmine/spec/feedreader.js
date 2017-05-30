@@ -58,15 +58,11 @@ $(function() {
         
         //checks to make sure menu dissapears when it is clicked the second time 
         it('dissapears when clicked twice', function(){
-            if($("body").hasClass("menu-hidden")){
-                menuIcon.click();
-                expect($("body").hasClass("menu-hidden")).toBe(false);
-            }
+            menuIcon.click();
+            expect($("body").hasClass("menu-hidden")).toBe(false);
             
-            if(!$("body").hasClass("menu-hidden")){
-                menuIcon.click();
-                expect($("body").hasClass("menu-hidden")).toBe(true);
-            }
+            menuIcon.click();
+            expect($("body").hasClass("menu-hidden")).toBe(true);
         });
     });
     
@@ -78,30 +74,35 @@ $(function() {
         beforeEach(function(done){
             loadFeed(0, function(){
                 initialEntries = $(".feed").html();
+                done();
             });
-            done();
         });
         
         //checks for null entries
         it('is present', function(){
             expect(initialEntries).not.toBe(null);
+            expect($(".feed .entry").length).toBeGreaterThan(0);
         });
     });
     
     //test that checks new feed functionality
     describe("New Feed Selection", function(){
-        var initialEntries;
+        var prevInitialEntries;
         
-        beforeEach(function(done){
-            loadFeed(1, function(){
-                initialEntries = $(".feed").html();
+        beforeAll(function(done){
+            loadFeed(0, function(){
+                prevInitialEntries = $(".feed .entry > h2").first().text();
+                done();
             });
-            done();
         });
         
-        it("content actually changes on new feed", function(done){
+        beforeEach(function(done){
             loadFeed(2, done);
-            expect($(".feed").html()).not.toEqual(initialEntries);
+        });
+        
+        it("content actually changes on new feed", function(){
+            var newInitialEntries = $(".feed .entry > h2").first().text();
+            expect(newInitialEntries).not.toBe(prevInitialEntries);
         });
     });
 }());
