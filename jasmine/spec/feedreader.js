@@ -80,7 +80,6 @@ $(function() {
         
         //checks for null entries
         it('is present', function(){
-            expect(initialEntries).not.toBe(null);
             expect($(".feed .entry").length).toBeGreaterThan(0);
         });
     });
